@@ -88,11 +88,13 @@ TD3_PARAMS = {
     "verbose": 0,
 }
 
+# NOTE: Using a fixed ent_coef of 0.1 instead of "auto_0.1" to keep entropy
+# tuning disabled while I experiment with manual coefficient values.
 SAC_PARAMS = {
     "buffer_size": 100_000,
     "learning_rate": 1e-3,
     "batch_size": 256,
-    "ent_coef": "auto_0.1",
+    "ent_coef": 0.1,
     "verbose": 0,
 }
 
@@ -106,16 +108,3 @@ AGENT_PARAMS: dict = {
 
 # Total training timesteps
 TOTAL_TIMESTEPS = int(os.getenv("TOTAL_TIMESTEPS", "500_000"))
-
-# ---------------------------------------------------------------------------
-# Paths
-# ---------------------------------------------------------------------------
-DATA_DIR = os.getenv("DATA_DIR", "data")
-MODEL_DIR = os.getenv("MODEL_DIR", "trained_models")
-RESULTS_DIR = os.getenv("RESULTS_DIR", "results")
-LOG_DIR = os.getenv("LOG_DIR", "logs")
-
-# ---------------------------------------------------------------------------
-# Logging
-# ---------------------------------------------------------------------------
-LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
