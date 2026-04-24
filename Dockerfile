@@ -28,13 +28,15 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY src/ ./src/
 COPY setup.py .
 COPY README.md .
+# Note: .env files are optional; this won't fail if none exist
 COPY .env* ./
 
 # Install the package in development mode
 RUN pip install -e .
 
 # Create necessary directories
-RUN mkdir -p data logs
+# Also create a personal notebooks dir for experimentation
+RUN mkdir -p data logs notebooks
 
 # Create non-root user
 RUN useradd --create-home --shell /bin/bash app \
