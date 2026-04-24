@@ -62,13 +62,4 @@ datadate    tradedate    trade_price    y_return = ln(next/this)
 | `ln(price_2025-12-31 / price_2025-09-30)` | On 2025-09-30 the Q3 report is not yet public; you can't act on it until tradedate 2025-12-01 | Buy at tradedate, not quarter-end |
 | y_return = 0 | Frozen price from delisted ticker whose adj_close_q was never updated | Set to NULL |
 
-> **Personal note:** I initially made the `ln(adj_close_q[t+1] / adj_close_q[t])` mistake during my first run and got suspiciously high backtest returns — the lookahead bias inflated Sharpe by roughly 0.4 in my growth_tech bucket. The `trade_price` approach fixed it. Don't skip the pre-run verification below.
-
-### Pre-Run Verification (MUST execute before every model run)
-
-```python
-import sqlite3, pandas as pd, numpy as np
-conn = sqlite3.connect('data/finrl_trading.db')
-df = pd.read_sql('''
-    SELECT ticker, datadate, trade
-```
+> **Personal note:** I initially made the `ln(adj_close_q[t+1] / adj_close_q[t])` mistake during my first run and got suspiciously high backtest returns — the lookahead bias inflated Sharpe by roughly 0.4 in my growth_tech bucket. Double-checking this calculation before every new data pull is now the first item on my pre-run checklist. If y_return values look implausibly large (|y_return| > 1.5 for more than ~1% of rows), that's a red flag to re-examine the price source.
