@@ -34,6 +34,7 @@
 > **My experiments so far:**
 > - `notebooks/risk_overlay_experiments.ipynb` — testing a CVaR-based drawdown cap on top of the default MVO allocator
 > - `strategies/custom_momentum.py` — a simple cross-sectional momentum overlay I'm comparing against the paper's baselines
+> - `notebooks/transaction_cost_sensitivity.ipynb` — checking how sensitive the momentum strategy's Sharpe is to different commission assumptions (spoiler: more sensitive than I expected)
 
 ## About
 
@@ -41,8 +42,4 @@
 
 Introduced in our paper *"FinRL-X: An AI-Native Modular Infrastructure for Quantitative Trading"* ([arXiv:2603.21330](https://arxiv.org/abs/2603.21330)), FinRL-X succeeds the original [FinRL](https://github.com/AI4Finance-Foundation/FinRL) framework with a fully modernized architecture designed for the LLM and agentic AI era.
 
-> FinRL-X is **not just a library** — it is a full-stack trading platform engineered around modularity, reproducibility, and production-readiness, supporting everything from ML-based stock selection and professional backtesting to live brokerage execution.
-
-At its core is a **weight-centric architecture** — the target portfolio weight vector is the sole interface contract between strategy logic and downstream execution:
-
-$$w_t = \mathcal{R}_t\bigl(\mathcal{T}_t\bigl(\mathcal{A}_t\bigl(\mathcal{S}_t(\mathcal{X
+> FinRL-X is **not just a library** — it is a full-stack trading platform engineered around modularity, reproducibility, and production-readiness, supporting everything from ML-based stock selection and professional backtesting to live brok
