@@ -30,6 +30,10 @@
 ---
 
 > **Personal fork note:** I'm using this primarily to experiment with the portfolio allocation module (`𝒜`) and test custom risk overlays. The upstream paper/code is excellent — my changes will mostly live in `strategies/` and personal experiment notebooks.
+>
+> **My experiments so far:**
+> - `notebooks/risk_overlay_experiments.ipynb` — testing a CVaR-based drawdown cap on top of the default MVO allocator
+> - `strategies/custom_momentum.py` — a simple cross-sectional momentum overlay I'm comparing against the paper's baselines
 
 ## About
 
@@ -41,6 +45,4 @@ Introduced in our paper *"FinRL-X: An AI-Native Modular Infrastructure for Quant
 
 At its core is a **weight-centric architecture** — the target portfolio weight vector is the sole interface contract between strategy logic and downstream execution:
 
-$$w_t = \mathcal{R}_t\bigl(\mathcal{T}_t\bigl(\mathcal{A}_t\bigl(\mathcal{S}_t(\mathcal{X}_{\le t})\bigr)\bigr)\bigr)$$
-
-where $\mathcal{S}$ denotes stock selection, $\mathcal{A}$ portfolio allocation, $\mathcal{T}$ timing adjustment, and $\mathcal{R}$ portfolio-level risk overlay. Each transformation is contract-preserving — you can swap any mod
+$$w_t = \mathcal{R}_t\bigl(\mathcal{T}_t\bigl(\mathcal{A}_t\bigl(\mathcal{S}_t(\mathcal{X
